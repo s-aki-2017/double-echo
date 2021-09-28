@@ -74,7 +74,7 @@ def handle_image(event):
     )
 
     # error
-    # app.logger.info(f"{APP_URL}/{main_image_path}")
+    app.logger.info(f"{APP_URL}/{main_image_path}")
     line_bot_api.reply_message(
         event.reply_token,
         image_message
