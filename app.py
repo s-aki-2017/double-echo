@@ -20,10 +20,8 @@ app = Flask(__name__)
 
 
 #環境変数からLINE Access Tokenを設定
-os.environ["LINE_CHANNEL_ACCESS_TOKEN"] = "aGU/TQDmcKFz5zk6G2qq4aZD9yr/c2oTtrxmPh/ZufxhGym6nTDOjrwU9krvPp96GRFnWzSmhri75JlUW8TIp8V/yZAAX+doTz7by3akxZXlTa6UPzhCZt9s0vvHRSzHMHKX/gN1PJDF+eIEV5xTIwdB04t89/1O/w1cDnyilFU="
 LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 #環境変数からLINE Channel Secretを設定
-os.environ["LINE_CHANNEL_SECRET"] = "f3827c2bbdfdd79eaa10f8892dc92ce6"
 LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 
 #APP_URL = 'https://double-echo.herokuapp.com'
