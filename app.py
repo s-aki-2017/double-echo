@@ -24,7 +24,8 @@ LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 #環境変数からLINE Channel Secretを設定
 LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 
-APP_URL = 'https://double-echo.herokuapp.com'
+#APP_URL = 'https://double-echo.herokuapp.com'
+APP_URL = 'https://b0c0-2400-4050-cf82-4b10-2d17-cc32-eaf0-4081.ngrok.io'
 SRC_IMAGE_PATH = "static/images/{}.jpg"
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
@@ -65,8 +66,8 @@ def handle_image(event):
     ImageProcessor.to_gray(str(src_image_path))
     image_message = ImageSendMessage(
         original_content_url=APP_URL+str(src_image_path),
-        #preview_image_url=APP_URL+"/static/images/"+event.message.id+".jpg"
-        preview_image_url=APP_URL+str(src_image_path)
+        preview_image_url=APP_URL+"/static/images/"+event.message.id+".jpg"
+        #preview_image_url=APP_URL+str(src_image_path)
     )
     line_bot_api.reply_message(
         event.reply_token,

@@ -1,0 +1,2 @@
+opencvのno module error
+https://stackoverflow.com/questions/63845382/importerror-libgl-so-1-error-when-accessing-heroku-app
