@@ -1,2 +1,25 @@
 opencvのno module error
 https://stackoverflow.com/questions/63845382/importerror-libgl-so-1-error-when-accessing-heroku-app
+
+以下のようなエラーが出たが、requirement.txtのライブラリのversionを合わせたら直った
+raise jsondecodeerror( expecting value s err.value) from none flask
+
+pip list でライブラリversionの確認
+
+画像リプの参考
+https://kubogen.com/web-programing-245/
+
+画像を送る際に
+previewだけ#コメントの通りに書くと404エラーになる
+originalの方はなぜかエラーにならない
+ImageSendMessage(
+        original_content_url=APP_URL+str(src_image_path),
+        preview_image_url=APP_URL+"/static/images/"+event.message.id+".jpg"
+        #preview_image_url=APP_URL+str(src_image_path)
+    )
+
+一応herokuにアップする際は-headlessをつけた方が良さそう
+opencv-python-headless==4.5.3.56
+
+heroku run bash #heroku環境に入れる
+heroku logs --tail #logが見れる（--tail はオプション）
