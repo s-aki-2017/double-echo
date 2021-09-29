@@ -24,8 +24,7 @@ LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 #環境変数からLINE Channel Secretを設定
 LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 
-#APP_URL = 'https://double-echo.herokuapp.com'
-APP_URL = 'https://b0c0-2400-4050-cf82-4b10-2d17-cc32-eaf0-4081.ngrok.io'
+APP_URL = 'https://double-echo.herokuapp.com'
 SRC_IMAGE_PATH = "static/images/{}.jpg"
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
