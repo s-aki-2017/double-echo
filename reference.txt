@@ -1,3 +1,6 @@
+公式GitHubドキュメント
+https://github.com/line/line-bot-sdk-python
+
 opencvのno module error
 https://stackoverflow.com/questions/63845382/importerror-libgl-so-1-error-when-accessing-heroku-app
 
@@ -23,3 +26,6 @@ opencv-python-headless==4.5.3.56
 
 heroku run bash #heroku環境に入れる
 heroku logs --tail #logが見れる（--tail はオプション）
+
+botからプッシュ通知を送る方法
+https://qiita.com/kotamatsuoka/items/6f56d0d0a3225160b4d0
