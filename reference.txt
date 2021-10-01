@@ -29,3 +29,10 @@ heroku logs --tail #logが見れる（--tail はオプション）
 
 botからプッシュ通知を送る方法
 https://qiita.com/kotamatsuoka/items/6f56d0d0a3225160b4d0
+
+event.source.group_id でグループIDを取得可能、ユーザーIDと同じ扱いでpush通知可能
+summary = line_bot_api.get_group_summary(event.source.group_id)
+
+pip3 install mysqlclientでインストールできない問題
+https://teratail.com/questions/168291
+のベストアンサー

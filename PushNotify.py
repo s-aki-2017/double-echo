@@ -11,13 +11,9 @@ from linebot.models import (
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction
 )
 import os
-from pathlib import Path
-import time
-import ImageProcessor
 
 # 軽量なウェブアプリケーションフレームワーク:Flask
 app = Flask(__name__)
-
 
 #環境変数からLINE Access Tokenを設定
 LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
@@ -25,38 +21,15 @@ LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(LINE_CHANNEL_SECRET)
-
-@app.route("/callback", methods=['POST'])
-def callback():
-    # get X-Line-Signature header value
-    signature = request.headers['X-Line-Signature']
-
-    # get request body as text
-    body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
-
-    # handle webhook body
-    try:
-        handler.handle(body, signature)
-    except InvalidSignatureError:
-        abort(400)
-
-    return 'OK'
 
 LINE_MY_USER_ID = os.environ["LINE_MY_USER_ID"]
-LINE_FRIEND_158_USER_ID = os.environ["LINE_FRIEND_158_USER_ID"]
 
-def send_msg():
-    to = LINE_FRIEND_158_USER_ID
-    me = LINE_MY_USER_ID
+def push_message_to_me():
+    to = LINE_MY_USER_ID
     reply = TextSendMessage(
         text='Hello'
     )
     line_bot_api.push_message(to, reply)
-    line_bot_api.push_message(me, reply)
 
 if __name__ == "__main__":
-    #port = int(os.getenv("PORT", 5000))
-    #app.run(host="0.0.0.0", port=port)
-    send_msg()
+    push_message_to_me()

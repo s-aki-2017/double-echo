@@ -18,7 +18,6 @@ import ImageProcessor
 # 軽量なウェブアプリケーションフレームワーク:Flask
 app = Flask(__name__)
 
-
 #環境変数からLINE Access Tokenを設定
 LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 #環境変数からLINE Channel Secretを設定
@@ -50,10 +49,13 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     print(f'name: {profile.display_name}')
     print(f'message: {event.message.text}')
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=profile.display_name)
-    # )
+
+    summary = line_bot_api.get_group_summary(event.source.group_id)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="recv")
+    )
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
