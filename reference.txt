@@ -36,3 +36,19 @@ summary = line_bot_api.get_group_summary(event.source.group_id)
 pip3 install mysqlclientでインストールできない問題
 https://teratail.com/questions/168291
 のベストアンサー
+
+https://uxmilk.jp/12396
+mysqladminでパスワードを設定
+
+ファイル名をmysql.pyにしてはいけない
+
+python3 ***.py でmysqlに接続しようとしたところ
+Authentication plugin 'caching_sha2_password' is not supported
+とエラー
+pip uninstall mysql-connector
+で削除した後再度実行したら
+ModuleNotFoundError: No module named 'mysql.connector'
+すでに
+mysql-connector-python
+がinstallされている場合は一回uninstallして再度installしてから実行するとエラーが消えた
+https://stackoverflow.com/questions/50557234/authentication-plugin-caching-sha2-password-is-not-supported
