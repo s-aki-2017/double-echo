@@ -18,14 +18,10 @@ import ImageProcessor
 # 軽量なウェブアプリケーションフレームワーク:Flask
 app = Flask(__name__)
 
-
 #環境変数からLINE Access Tokenを設定
 LINE_CHANNEL_ACCESS_TOKEN = os.environ["LINE_CHANNEL_ACCESS_TOKEN"]
 #環境変数からLINE Channel Secretを設定
 LINE_CHANNEL_SECRET = os.environ["LINE_CHANNEL_SECRET"]
-
-APP_URL = 'https://double-echo.herokuapp.com'
-SRC_IMAGE_PATH = "static/images/{}.jpg"
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
@@ -50,32 +46,16 @@ def callback():
 # MessageEvent
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    profile = line_bot_api.get_profile(event.source.user_id)
+    print(f'name: {profile.display_name}')
+    print(f'message: {event.message.text}')
+
+    summary = line_bot_api.get_group_summary(event.source.group_id)
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text + event.message.text)
+        TextSendMessage(text="recv")
     )
-
-@handler.add(MessageEvent, message=ImageMessage)
-def handle_image(event):
-    src_image_path = Path(SRC_IMAGE_PATH.format(event.message.id)).absolute()
-    message_content = line_bot_api.get_message_content(event.message.id)
-    with open(src_image_path, "wb") as f:
-        f.write(message_content.content)
-    
-    ImageProcessor.to_gray(str(src_image_path))
-    image_message = ImageSendMessage(
-        original_content_url=APP_URL+str(src_image_path),
-        preview_image_url=APP_URL+"/static/images/"+event.message.id+".jpg"
-        #preview_image_url=APP_URL+str(src_image_path)
-    )
-    line_bot_api.reply_message(
-        event.reply_token,
-        image_message
-    )
-    time.sleep(1.5)
-    # 画像を削除する
-    src_image_path.unlink()
-
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
