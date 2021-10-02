@@ -52,3 +52,6 @@ ModuleNotFoundError: No module named 'mysql.connector'
 mysql-connector-python
 がinstallされている場合は一回uninstallして再度installしてから実行するとエラーが消えた
 https://stackoverflow.com/questions/50557234/authentication-plugin-caching-sha2-password-is-not-supported
+
+特定の時間にプログラムを実行する方法
+https://techacademy.jp/magazine/20872

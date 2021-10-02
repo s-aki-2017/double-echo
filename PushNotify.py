@@ -11,6 +11,9 @@ from linebot.models import (
     FollowEvent, MessageEvent, TextMessage, TextSendMessage, ImageMessage, ImageSendMessage, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction
 )
 import os
+import datetime
+import time
+import schedule
 
 # 軽量なウェブアプリケーションフレームワーク:Flask
 app = Flask(__name__)
@@ -27,9 +30,11 @@ LINE_MY_USER_ID = os.environ["LINE_MY_USER_ID"]
 def push_message_to_me():
     to = LINE_MY_USER_ID
     reply = TextSendMessage(
-        text='Hello'
+        text='hello'
     )
     line_bot_api.push_message(to, reply)
 
+
 if __name__ == "__main__":
     push_message_to_me()
+    #main()
